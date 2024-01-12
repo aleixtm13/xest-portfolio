@@ -205,3 +205,10 @@
   white-space: nowrap;
   border-width: 0;
 }
+
+.fa-socks::before {
+  content: "\f696";
+}
+
+.fa-scroll::before {
+  content: "\f70e"; }

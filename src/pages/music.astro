@@ -1,0 +1,12 @@
+---
+import PageLayout from "src/layouts/PageLayout.astro";
+import { SITE_TITLE } from "../config";
+import PageMeta from "src/components/PageMeta.astro";
+---
+
+<PageLayout>
+    <PageMeta title={`${SITE_TITLE} | Web Ninja`} slot="meta" />
+    <Fragment slot="main">
+        Aquí crearem una comunitat musical. Bàsicament em passareu música per escoltar hehe.
+    </Fragment>
+</PageLayout>
