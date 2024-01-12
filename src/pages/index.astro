@@ -1,5 +1,7 @@
 ---
+import Navigation from "../components/Navigation.astro";
 
+const webTitle = "XEF XEST";
 ---
 
 <html lang="en">
@@ -8,9 +10,15 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <title>{webTitle}</title>
   </head>
   <body>
-    <h1 class="underline">Astro</h1>
+    <Navigation />
+    <main>
+      <h1>{webTitle}</h1>
+      <p>
+        This is a test of Astro's support for <code>.astro</code> files.
+      </p>
+    </main>
   </body>
 </html>
