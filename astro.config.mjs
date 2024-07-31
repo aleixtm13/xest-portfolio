@@ -7,5 +7,8 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   output: 'server',
   adapter: awsAmplify(),
-  integrations: [tailwind()]
+  integrations: [tailwind()],
+  css: {
+    global: `src/styles/global.css`
+  }
 });
