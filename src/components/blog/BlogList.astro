@@ -11,6 +11,11 @@ const { posts } = Astro.props;
 
 <ul class='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
   {
+    posts.length === 0 && (
+      <div>
+        <p>No hi ha cap entrada al blog.</p>
+      </div>
+    ) ||
     posts.map((post) => {
       return (
         <li>
