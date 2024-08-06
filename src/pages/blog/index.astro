@@ -12,8 +12,9 @@ const posts = await getCollection('blog').then((collection) =>
   title='Blog'
   description="Blog d'en Xest"
   pageTitle="Blog d'en Xest"
+  classList='flex flex-col min-h-screen'
 >
-  <main class='bg-green p-6'>
+  <main class='bg-white p-6'>
     <BlogList posts={posts} />
   </main>
 </Layout>

@@ -33,7 +33,7 @@ const { backToTop = false } = Astro.props;
   )
 }
 
-<footer class='bg-black text-white p-6 text-center'>
+<footer class='position-fixed bg-black text-white p-6 text-center bottom-0'>
   <h2 class='hidden'>Footer</h2>
   <p class='outfit'>
    Casa d'en Xest desenvolupada per Aleix Trasserra Martinez
@@ -68,3 +68,12 @@ const { backToTop = false } = Astro.props;
     window.addEventListener('scroll', toggleBackToTopButton);
   });
 </script>
+
+<style>
+  footer {
+    width: 100%;
+    width: -moz-available;          /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    width: fill-available;
+  }
+</style>
