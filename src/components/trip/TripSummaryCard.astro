@@ -1,12 +1,12 @@
 ---
 import SummaryCard from '@components/generic/SummaryCard.astro';
+import { Button } from '@eliancodes/brutal-ui';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
   trip: CollectionEntry<'trip'>;
 }
 const { trip } = Astro.props;
-console.log(trip);
 ---
 
 <SummaryCard
@@ -15,4 +15,7 @@ console.log(trip);
     imgSrc={trip.data.imgUrl}
     description={trip.data.description}
 >
+  <div class="flex justify-end my-4">
+    <Button href={`/trip/${trip.slug}/`}>Explora el viatge &rarr;</Button>
+  </div>
 </SummaryCard>
