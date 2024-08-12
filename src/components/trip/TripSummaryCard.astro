@@ -1,0 +1,18 @@
+---
+import SummaryCard from '@components/generic/SummaryCard.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  trip: CollectionEntry<'trip'>;
+}
+const { trip } = Astro.props;
+console.log(trip);
+---
+
+<SummaryCard
+    title={trip.data.title}
+    imgAlt={trip.data.title}
+    imgSrc={trip.data.imgUrl}
+    description={trip.data.description}
+>
+</SummaryCard>

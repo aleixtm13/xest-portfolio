@@ -1,16 +1,11 @@
 ---
+import TripList from '@components/trip/TripList.astro';
 import Layout from '@layouts/Default.astro';
-import client from 'src/connectors/aws/aws-connector';
-import { ListBucketsCommand } from '@aws-sdk/client-s3';
-export const helloS3 = async () => {
-  const command = new ListBucketsCommand({});
+import { getCollection } from 'astro:content';
 
-  const { Buckets } = await client.send(command);
-  console.log("Buckets: ");
-console.log((Buckets ?? []).map((bucket) => bucket.Name).join("\n"));
-  return Buckets;
-};
-await helloS3();
+const trips = await getCollection('trip').then((collection) =>
+  collection.reverse()
+);
 ---
 
 <Layout
@@ -20,7 +15,6 @@ await helloS3();
     classList='flex flex-col min-h-screen bg-blue'
 >
     <main class='p-6'>
-        <h1 class='text-4xl font-bold'>Viatges</h1>
-        <p class='text-lg'>Aquí trobaràs els viatges que he fet.</p>
+        <TripList trips={trips} />
     </main>
 </Layout>
