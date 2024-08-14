@@ -12,7 +12,7 @@ const trips = await getCollection('trip').then((collection) =>
     title='Viatges'
     description="Viatges d'en Xest"
     pageTitle="Viatges d'en Xest"
-    classList='flex flex-col min-h-screen bg-blue'
+    classList='flex flex-col min-h-screen'
 >
     <main class='p-6'>
         <TripList trips={trips} />

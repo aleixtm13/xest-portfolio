@@ -1,20 +1,49 @@
 ---
-import BlogSideBar from '@components/blog/BlogSideBar.astro';
+import { getImageUrl } from 'src/s3/s3-bucket';
 import Layout from './Default.astro';
-import BlogContent from '@components/blog/BlogContent.astro';
+import { getImagesFromFolder } from 'src/s3/s3-bucket';
+import { Image } from 'astro:assets';
 
 const ogImage = new URL(`/v1/generate/og/${Astro.params.slug}.png`, Astro.url);
 
 const { content, headings } = Astro.props;
 const { title, description } = content;
+
+const folderName = Astro.params.slug || '';
+
+const images = await getImagesFromFolder(folderName);
 ---
 
 <Layout
   title={title as string}
   description={description as string}
   ogImage={ogImage}
-  classList='bg-gray-100'
 >
-  <main class='p-6 lg:grid lg:grid-cols-3 flex justify-center'>
-  </main>
+  <article class="mx-auto p-6">
+    <!-- Título del viaje -->
+    <header class="mb-8">
+      <h1 class="poppins text-4xl font-bold text-center text-gray-800 mb-4">
+        {title}
+      </h1>
+      <p class="poppins text-lg text-center">
+        {description}
+      </p>
+    </header>
+
+    <!-- Galería de imágenes -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {images.map((image) => (
+        <div class="rounded-lg border-3 border-black my-4">
+          <Image
+            src={getImageUrl(image)}
+            alt={`Image from ${folderName} album`}
+            width={720}
+            height={720}
+            class="rounded h-full w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </section>
+  </article>
 </Layout>
