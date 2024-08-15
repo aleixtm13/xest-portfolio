@@ -16,8 +16,8 @@ const { trip } = Astro.props;
     imgSrc={trip.data.imgUrl}
     description={trip.data.description}
 >
-  <p class="">Inici: {formatDateToCatalan(trip.data.fromDate)}</p>
-  <p class="">Fins: {formatDateToCatalan(trip.data.toDate)}</p>
+  <p class=""><b>Inici: </b>{formatDateToCatalan(trip.data.fromDate)}</p>
+  <p class=""><b>Fins: </b>{formatDateToCatalan(trip.data.toDate)}</p>
   <div class="flex justify-end my-4">
     <Button href={`/trip/${trip.slug}/`}>Explora el viatge &rarr;</Button>
   </div>

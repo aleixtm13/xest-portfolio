@@ -24,10 +24,3 @@ export const fetchPokemonOfTheDay = async () => {
 
     return pokemon;
 }
-
-// Example usage
-fetchPokemonOfTheDay().then(pokemon => {
-    console.log(`Today's Pokémon is: ${pokemon.name}`);
-}).catch(error => {
-    console.error('Error fetching Pokémon:', error);
-});
