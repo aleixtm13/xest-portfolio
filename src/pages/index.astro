@@ -9,17 +9,12 @@ import { Card } from '@eliancodes/brutal-ui';
 const builtWith = [
   { name: 'Astro', url: 'https://astro.build/' },
   { name: 'UnoCSS', url: 'https://uno.antfu.me/' },
-  {
-    name: 'Content Collections',
-    url: 'https://docs.astro.build/en/guides/content-collections/',
-  },
+  { name: 'Content Collections', url: 'https://docs.astro.build/en/guides/content-collections/' },
   { name: 'RSS', url: 'https://docs.astro.build/en/guides/rss/' },
-  {
-    name: 'Sitemap',
-    url: 'https://docs.astro.build/en/guides/integrations-guide/sitemap/',
-  },
+  { name: 'Sitemap', url: 'https://docs.astro.build/en/guides/integrations-guide/sitemap/'},
   { name: 'Vercel', url: 'https://vercel.com' },
   { name: 'TypeScript', url: 'https://www.typescriptlang.org/' },
+  { name: 'AWS', url: 'https://aws.amazon.com/' }
 ];
 ---
 
@@ -45,9 +40,14 @@ const builtWith = [
             <p class='mt-2 outfit text-xl md:text-3xl lg:text-5xl'>
               Tot el que vols saber, quan ho vols saber
             </p>
-            <Button target={'_self'} href='/blog/'>
-              Guaita el blog &rarr;
-            </Button>
+            <div class="flex space-x-4">
+              <Button target={'_self'} href='/blog/'>
+                Guaita el blog &rarr;
+              </Button>
+              <Button target={'_self'} href='/trip/'>
+                Investiga els viatges &rarr;
+              </Button>
+            </div>
           </div>
         </Card>
       </div>
