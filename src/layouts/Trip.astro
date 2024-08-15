@@ -3,11 +3,13 @@ import { getImageUrl } from 'src/s3/s3-bucket';
 import Layout from './Default.astro';
 import { getImagesFromFolder } from 'src/s3/s3-bucket';
 import { Image } from 'astro:assets';
+import { formatDateToCatalan } from 'src/methods/date-utils';
+import { getNumberOfDays } from 'src/methods/date-utils';
 
 const ogImage = new URL(`/v1/generate/og/${Astro.params.slug}.png`, Astro.url);
 
 const { content, headings } = Astro.props;
-const { title, description } = content;
+const { title, description, fromDate, toDate } = content;
 
 const folderName = Astro.params.slug || '';
 
@@ -19,15 +21,19 @@ const images = await getImagesFromFolder(folderName);
   description={description as string}
   ogImage={ogImage}
 >
+<main class="p-6">
   <article class="mx-auto p-6">
     <!-- Título del viaje -->
     <header class="mb-8">
       <h1 class="poppins text-4xl font-bold text-center text-gray-800 mb-4">
         {title}
       </h1>
-      <p class="poppins text-lg text-center">
+      <p class="poppins text-2xl text-center">
         {description}
       </p>
+      <p class="poppins text-lg lg:text-4xl">Inici: {formatDateToCatalan(new Date(fromDate))}</p>
+      <p class="poppins text-lg lg:text-4xl text-lg">Fins: {formatDateToCatalan(new Date(toDate))}</p>
+      <p class="poppins text-lg lg:text-4xl text-lg text-center">Una aventura de {getNumberOfDays(new Date(fromDate), new Date(toDate))} dies</p>
     </header>
 
     <!-- Galería de imágenes -->
@@ -46,4 +52,6 @@ const images = await getImagesFromFolder(folderName);
       ))}
     </section>
   </article>
+</main>
+  
 </Layout>
