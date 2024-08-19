@@ -1,4 +1,3 @@
-const CACHE_DURATION = 1000 * 60 * 60 * 24; // 24 hours
 
 function getSeededRandom(seed: number) {
     const x = Math.sin(seed) * 10000;
