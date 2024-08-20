@@ -1,6 +1,6 @@
 ---
 title: Presentació
-pubDate: 06/0//2024 12:30
+pubDate: 7 d'agost de 2024
 author: "Aleix Trasserra"
 tags:
   - Personal
