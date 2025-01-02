@@ -1,0 +1,20 @@
+---
+import TripList from '@components/trip/TripList.astro';
+import Layout from '@layouts/Default.astro';
+import { getCollection } from 'astro:content';
+
+const trips = await getCollection('trip').then((collection) =>
+  collection.reverse()
+);
+---
+
+<Layout
+    title='Viatges'
+    description="Viatges d'en Xest"
+    pageTitle="Viatges d'en Xest"
+    classList='flex flex-col min-h-screen'
+>
+    <main class='p-6'>
+        <TripList trips={trips} />
+    </main>
+</Layout>

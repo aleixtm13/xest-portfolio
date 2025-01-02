@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from "astro:content";
+import TripSummaryCard from "./TripSummaryCard.astro";
+interface Props {
+  trips: CollectionEntry<'trip'>[];
+}
+
+const { trips } = Astro.props;
+---
+
+<ul class='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+    {
+      trips.length === 0 && (
+        <div>
+          <p>No hi ha cap entrada al blog.</p>
+        </div>
+      ) ||
+      trips.map((trip) => {
+        return (
+          <li>
+            <TripSummaryCard trip={trip} />
+          </li>
+        );
+      })
+    }
+  </ul>

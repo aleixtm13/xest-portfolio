@@ -1,0 +1,16 @@
+---
+interface Props {
+  content: any;
+}
+
+const { content } = Astro.props;
+---
+
+<article class={`prose-slate w-sm md:w-prose md:prose poppins`}>
+  <a href="/blog/" title="Torna al blog">&larr; Torna al blog</a>
+  <p class="text-sm md:text-base">
+    Publicat a data de {content.pubDate}
+  </p>
+  <slot />
+  <a href="/blog/" title="Torna al blog">&larr; Torna al rebedor</a>
+</article>

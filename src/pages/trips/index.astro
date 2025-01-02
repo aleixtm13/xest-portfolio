@@ -1,0 +1,26 @@
+---
+import Layout from '@layouts/Default.astro';
+import client from 'src/connectors/aws/aws-connector';
+import { ListBucketsCommand } from '@aws-sdk/client-s3';
+export const helloS3 = async () => {
+  const command = new ListBucketsCommand({});
+
+  const { Buckets } = await client.send(command);
+  console.log("Buckets: ");
+console.log((Buckets ?? []).map((bucket) => bucket.Name).join("\n"));
+  return Buckets;
+};
+await helloS3();
+---
+
+<Layout
+    title='Viatges'
+    description="Viatges d'en Xest"
+    pageTitle="Viatges d'en Xest"
+    classList='flex flex-col min-h-screen bg-blue'
+>
+    <main class='p-6'>
+        <h1 class='text-4xl font-bold'>Viatges</h1>
+        <p class='text-lg'>Aquí trobaràs els viatges que he fet.</p>
+    </main>
+</Layout>

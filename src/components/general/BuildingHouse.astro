@@ -1,0 +1,22 @@
+---
+const {height, width} = Astro.props
+---
+<div class:list={['i-uil-house-user', 'animate-build text-6xl animate-spin-slow', `w-${width}`, `h-${height}`]}></div>
+
+<style>
+  @keyframes build {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  .animate-build {
+    animation: build 5s linear infinite;
+  }
+</style>

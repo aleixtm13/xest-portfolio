@@ -1,0 +1,60 @@
+---
+import { getImageUrl } from 'src/s3/s3-bucket';
+import Layout from './Default.astro';
+import { getImagesFromFolder } from 'src/s3/s3-bucket';
+import { Image } from 'astro:assets';
+import { formatDateToCatalan } from 'src/methods/date-utils';
+import { getNumberOfDays } from 'src/methods/date-utils';
+
+const ogImage = new URL(`/v1/generate/og/${Astro.params.slug}.png`, Astro.url);
+
+const { content, headings } = Astro.props;
+const { title, description, fromDate, toDate } = content;
+
+const folderName = Astro.params.slug || '';
+
+const images = await getImagesFromFolder(folderName);
+---
+
+<Layout
+  title={title as string}
+  description={description as string}
+  ogImage={ogImage}
+>
+<main class="p-6">
+  <article class="mx-auto p-6">
+    <!-- Título del viaje -->
+    <header class="mb-8">
+      <h1 class="poppins text-6xl font-bold text-center text-gray-800 mb-4">
+        {title}
+      </h1>
+      <div class="flex justify-between">
+        <p class="poppins lg:text-3xl"><b>Inici: </b>{formatDateToCatalan(new Date(fromDate))}</p>
+        <p class="poppins lg:text-3xl"><b>Final: </b> {formatDateToCatalan(new Date(toDate))}</p>
+      </div>
+      <p class="poppins text-lg lg:text-3xl text-lg text-center">Una aventura de <b>{getNumberOfDays(new Date(fromDate), new Date(toDate))}</b> dies</p>
+    </header>
+
+    <p class="poppins text-2xl lg:text-4xl">
+      {description}
+    </p>
+
+    <!-- Galería de imágenes -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      {images.map((image) => (
+        <div class="rounded-lg border-3 border-black my-4">
+          <Image
+            src={getImageUrl(image)}
+            alt={`Image from ${folderName} album`}
+            width={720}
+            height={720}
+            class="rounded h-full w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </section>
+  </article>
+</main>
+  
+</Layout>
