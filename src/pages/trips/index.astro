@@ -1,16 +1,5 @@
 ---
 import Layout from '@layouts/Default.astro';
-import client from 'src/connectors/aws/aws-connector';
-import { ListBucketsCommand } from '@aws-sdk/client-s3';
-export const helloS3 = async () => {
-  const command = new ListBucketsCommand({});
-
-  const { Buckets } = await client.send(command);
-  console.log("Buckets: ");
-console.log((Buckets ?? []).map((bucket) => bucket.Name).join("\n"));
-  return Buckets;
-};
-await helloS3();
 ---
 
 <Layout

@@ -1,8 +1,5 @@
 ---
-import { getImageUrl } from 'src/s3/s3-bucket';
 import Layout from './Default.astro';
-import { getImagesFromFolder } from 'src/s3/s3-bucket';
-import { Image } from 'astro:assets';
 import { formatDateToCatalan } from 'src/methods/date-utils';
 import { getNumberOfDays } from 'src/methods/date-utils';
 
@@ -12,8 +9,6 @@ const { content, headings } = Astro.props;
 const { title, description, fromDate, toDate } = content;
 
 const folderName = Astro.params.slug || '';
-
-const images = await getImagesFromFolder(folderName);
 ---
 
 <Layout
@@ -41,7 +36,7 @@ const images = await getImagesFromFolder(folderName);
 
     <!-- Galería de imágenes -->
     <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      {images.map((image) => (
+      <!-- {images.map((image) => (
         <div class="rounded-lg border-3 border-black my-4">
           <Image
             src={getImageUrl(image)}
@@ -52,7 +47,7 @@ const images = await getImagesFromFolder(folderName);
             loading="lazy"
           />
         </div>
-      ))}
+      ))} -->
     </section>
   </article>
 </main>
